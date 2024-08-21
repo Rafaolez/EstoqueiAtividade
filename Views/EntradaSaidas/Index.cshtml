@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Estoquei.Models.EntradaSaida>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantidadeMovimentação)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoMovimentacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataMovimentaçãoId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produto.ProdutoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantidadeMovimentação)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoMovimentacao.TipoMovimentacaoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataMovimentaçãoId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EntradaSaidaId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EntradaSaidaId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EntradaSaidaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

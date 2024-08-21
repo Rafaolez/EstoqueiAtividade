@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Estoquei.Models.Produto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+    @using (Html.BeginForm("Index", "Produto", FormMethod.Get))
+    {
+        <p>
+            Digite aqui sua pesquisa: @Html.TextBox("Pesquisa") 
+            <input type="submit" value="Pesquisar" />
+        </p>
+    }
+</div>
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeProduto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PesoProduto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantidadeEstoque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoProduto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PesoProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantidadeEstoque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoProduto.TipoProdutoId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProdutoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProdutoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProdutoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
